@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:step_one/Bloc/data_bloc.dart';
 import 'dart:developer' as devtools show log;
 
 import 'Screens/home_page.dart';
@@ -8,7 +11,8 @@ extension Log on Object{
 }
 
 void main() {
-  runApp(const MyApp());
+  runApp(BlocProvider<DataBloc>(create: (context)=>DataBloc(),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
