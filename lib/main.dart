@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:developer' as devtools show log;
 
+import 'Screens/home_page.dart';
+
 extension Log on Object{
   void log() => devtools.log(toString());
 }
@@ -19,10 +21,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
-      home:  Scaffold(
-        body: Center(child: Text('Hello')),
-      ));
+      home:  HomePage());
   }
 }
+
