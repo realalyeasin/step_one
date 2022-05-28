@@ -1,29 +1,31 @@
 import 'dart:convert';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
+import 'package:get/get.dart';
 import '../Model/quotes_model.dart';
 import 'package:http/http.dart' as http;
 
-class Repo{
-  Future<List<QuotesModel>?> getQuotes() async {
-    String category= 'mom';
-    int limit = 5;
-    String baseUrl = 'https://api.api-ninjas.com/v1/quotes?category=$category&limit=$limit';
+class Repo extends GetxController {
+  Future<RxList?> getQuotes(String cat) async {
+    print(cat);
+    int limit = 10;
+    String baseUrl =
+        'https://api.api-ninjas.com/v1/quotes?category=$cat&limit=$limit';
     var headers = {
-      'X-Api-Key' : '${dotenv.get('API_KEY')}',
-  };
-    final response = await http.Client().get(Uri.parse(baseUrl),headers: headers);
+      'X-Api-Key': '${dotenv.get('API_KEY')}',
+    };
+    final response =
+        await http.Client().get(Uri.parse(baseUrl), headers: headers);
     print(response.body);
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       Iterable results = jsonDecode(response.body);
-      List<QuotesModel> quoteModels = [];
-      for(var result in results){
-        QuotesModel quotesModel = QuotesModel.fromJson(result);
+      var quoteModels = [].obs;
+      for (var result in results) {
+        var quotesModel = QuotesModel.fromJson(result);
         quoteModels.add(quotesModel);
-      } print(quoteModels);
+      }
+      print(quoteModels);
       return quoteModels;
-    } else if(response.statusCode != 200){
+    } else if (response.statusCode != 200) {
       return null;
     }
   }

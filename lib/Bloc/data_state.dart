@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:step_one/Model/quotes_model.dart';
 
 @immutable
-abstract class DataState{}
+abstract class DataState {}
 
-class DataInitialState extends DataState{}
+class DataInitialState extends DataState {}
 
-class DataLoadingState extends DataState{}
+class DataLoadingState extends DataState {}
 
-class DataLoadedState extends DataState{
-  final List<QuotesModel> api;
+class DataLoadedState extends DataState {
+  final api;
   DataLoadedState({required this.api});
 }
-class DataErrorState extends DataState{}
 
+class DataErrorState extends DataState {}

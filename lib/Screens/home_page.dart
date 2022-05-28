@@ -16,7 +16,7 @@ import '../Bloc/data_state.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-   Repo repo = Repo();
+  Repo repo = Get.put(Repo());
   var name1 = ['Toefl', 'Vocabulary', 'Notes'];
   var icon1 = [
     FontAwesomeIcons.noteSticky,
@@ -60,9 +60,9 @@ class HomePage extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is DataLoadedState){
-          return HomeUI(state.api,width);
-        } else if(state is DataErrorState){
+        } else if (state is DataLoadedState) {
+          return HomeUI(state.api, width);
+        } else if (state is DataErrorState) {
           return const Text("Something went wrong");
         }
         return const Center(
@@ -72,9 +72,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget HomeUI(List<QuotesModel> api, double width) {
+  Widget HomeUI(RxList api, double width) {
     var getTo = [Quotes(api: api), const Podcasts(), const Exercise()];
-
     return Column(
       children: [
         SizedBox(
@@ -311,7 +310,6 @@ class HomePage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       Get.to(() => getTo[index]);
-                      repo.getQuotes();
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
