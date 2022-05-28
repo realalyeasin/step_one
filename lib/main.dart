@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_one/Bloc/data_bloc.dart';
+import 'package:step_one/OnBoarding/views.dart';
 import 'dart:developer' as devtools show log;
 
+import 'Bindings/binding.dart';
 import 'Screens/home_page.dart';
 
 extension Log on Object{
   void log() => devtools.log(toString());
 }
+int? initScreen;
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  initScreen = await sharedPreferences.getInt('initScreen');
+  await sharedPreferences.setInt('initScreen', 1);
   runApp(BlocProvider<DataBloc>(create: (context)=>DataBloc(),
       child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
     return GetMaterialApp(
       darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
@@ -27,7 +36,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home:  HomePage());
+      initialRoute: initScreen == 0 || initScreen == null ? 'HomePage' : 'OnBoardingPage',
+      routes: {
+        'OnBoardingPage' : (context) => OnboardingPage(),
+        'HomePage' : (context) => HomePage(),
+      },
+      initialBinding: ControllerBinding(),
+    );
   }
 }
 
