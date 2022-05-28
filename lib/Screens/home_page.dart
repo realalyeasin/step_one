@@ -5,6 +5,7 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
+import 'package:step_one/Model/quotes_model.dart';
 import 'package:step_one/Repositories/repo.dart';
 import 'package:step_one/Screens/exercise.dart';
 import 'package:step_one/Screens/podcasts.dart';
@@ -29,7 +30,6 @@ class HomePage extends StatelessWidget {
     FontAwesomeIcons.timeline
   ];
   var name3 = ['Quotes', 'Podcasts', 'Exercise'];
-  var getTo = [const Quotes(), const Podcasts(), const Exercise()];
   String date = DateFormat.yMMMMd().format(DateTime.now());
   @override
   Widget build(BuildContext context) {
@@ -56,8 +56,14 @@ class HomePage extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is DataLoadedState) {
-          return HomeUI(width);
+        } else if (state is DataLoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is DataLoadedState){
+          return HomeUI(state.api,width);
+        } else if(state is DataErrorState){
+          return const Text("Something went wrong");
         }
         return const Center(
           child: Text("Something went wrong"),
@@ -66,7 +72,9 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget HomeUI(double width) {
+  Widget HomeUI(List<QuotesModel> api, double width) {
+    var getTo = [Quotes(api: api), const Podcasts(), const Exercise()];
+
     return Column(
       children: [
         SizedBox(
