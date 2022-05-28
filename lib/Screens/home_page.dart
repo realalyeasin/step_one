@@ -5,6 +5,7 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
+import 'package:step_one/Repositories/repo.dart';
 import 'package:step_one/Screens/exercise.dart';
 import 'package:step_one/Screens/podcasts.dart';
 import 'package:step_one/Screens/quotes.dart';
@@ -14,6 +15,7 @@ import '../Bloc/data_state.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
+   Repo repo = Repo();
   var name1 = ['Toefl', 'Vocabulary', 'Notes'];
   var icon1 = [
     FontAwesomeIcons.noteSticky,
@@ -301,6 +303,7 @@ class HomePage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       Get.to(() => getTo[index]);
+                      repo.getQuotes();
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),

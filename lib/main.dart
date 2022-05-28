@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:step_one/Bloc/data_bloc.dart';
 import 'package:step_one/OnBoarding/views.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:developer' as devtools show log;
 
 import 'Bindings/binding.dart';
@@ -20,6 +21,7 @@ Future<void> main() async{
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   initScreen = await sharedPreferences.getInt('initScreen');
   await sharedPreferences.setInt('initScreen', 1);
+  await dotenv.load(fileName: ".env");
   runApp(BlocProvider<DataBloc>(create: (context)=>DataBloc(),
       child: MyApp()));
 }
