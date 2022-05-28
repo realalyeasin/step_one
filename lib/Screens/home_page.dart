@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget HomeUI(RxList api, double width) {
-    var getTo = [Quotes(api: api), const Podcasts(), const Exercise()];
+    var getTo = [Quotes(), const Podcasts(), const Exercise()];
     return Column(
       children: [
         SizedBox(

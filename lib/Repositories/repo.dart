@@ -5,6 +5,7 @@ import '../Model/quotes_model.dart';
 import 'package:http/http.dart' as http;
 
 class Repo extends GetxController {
+  var quoteModels = [].obs;
   Future<RxList?> getQuotes(String cat) async {
     print(cat);
     int limit = 10;
@@ -18,15 +19,17 @@ class Repo extends GetxController {
     print(response.body);
     if (response.statusCode == 200) {
       Iterable results = jsonDecode(response.body);
-      var quoteModels = [].obs;
       for (var result in results) {
         var quotesModel = QuotesModel.fromJson(result);
         quoteModels.add(quotesModel);
       }
       print(quoteModels);
+      update();
       return quoteModels;
     } else if (response.statusCode != 200) {
       return null;
     }
+    update();
   }
+   RxList get repoApi =>  quoteModels;
 }

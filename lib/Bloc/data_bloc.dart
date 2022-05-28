@@ -6,11 +6,12 @@ import '../Repositories/repo.dart';
 
 class DataBloc extends Bloc<DataEvent, DataState> {
   Repo repo = Get.put(Repo());
+  var api = [].obs;
   DataBloc(this.repo) : super(DataInitialState()) {
     on<DataEvent>((event, emit) async {
       if (event is LoadDataEvent) {
         emit(DataLoadingState());
-        var api = await repo.getQuotes('');
+        api = (await repo.getQuotes(''))!;
         print(api);
         if (api == null) {
           emit(DataErrorState());
