@@ -8,4 +8,4 @@ A wholesome project --
 
 Screens --
 
-![1](https://user-images.githubusercontent.com/64202952/170763112-0a4e6c12-72c0-47de-8eaf-cc37bfc69f63.png) ![5](https://user-images.githubusercontent.com/64202952/170826807-899f30a2-6f4e-4b3d-a2c6-0fefccd6c455.png)
+![1](https://user-images.githubusercontent.com/64202952/170763112-0a4e6c12-72c0-47de-8eaf-cc37bfc69f63.png) ![5](https://user-images.githubusercontent.com/64202952/170826807-899f30a2-6f4e-4b3d-a2c6-0fefccd6c455.png) ![6](https://user-images.githubusercontent.com/64202952/170835038-257f3208-37c5-487f-b2be-6640744275fb.png)
