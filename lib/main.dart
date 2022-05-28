@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      initialRoute: initScreen == 0 || initScreen == null ? 'HomePage' : 'OnBoardingPage',
+      initialRoute: initScreen == 0 || initScreen == null ? 'OnBoardingPage' : 'HomePage',
       routes: {
         'OnBoardingPage' : (context) => OnboardingPage(),
         'HomePage' : (context) => HomePage(),
