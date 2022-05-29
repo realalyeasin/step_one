@@ -10,6 +10,7 @@ import 'dart:developer' as devtools show log;
 import 'Bindings/binding.dart';
 import 'Repositories/repo.dart';
 import 'Screens/home_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 extension Log on Object{
   void log() => devtools.log(toString());
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent));
     return GetMaterialApp(
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

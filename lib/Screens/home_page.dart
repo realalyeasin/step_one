@@ -5,7 +5,6 @@ import 'package:glassmorphism/glassmorphism.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
-import 'package:step_one/Model/quotes_model.dart';
 import 'package:step_one/Repositories/repo.dart';
 import 'package:step_one/Screens/exercise.dart';
 import 'package:step_one/Screens/podcasts.dart';
@@ -13,6 +12,7 @@ import 'package:step_one/Screens/quotes.dart';
 import '../Bloc/data_bloc.dart';
 import '../Bloc/data_event.dart';
 import '../Bloc/data_state.dart';
+import 'package:step_one/Extension/BuildContext/loc.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -41,9 +41,9 @@ class HomePage extends StatelessWidget {
           color: Colors.black,
         ),
         backgroundColor: const Color.fromRGBO(160, 232, 114, 1),
-        title: const Text(
-          'Skill Up',
-          style: TextStyle(
+        title: Text(
+          context.loc!.appbar_title,
+          style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w600,
               fontStyle: FontStyle.italic),
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (state is DataLoadedState) {
-          return HomeUI(state.api, width);
+          return HomeUI(state.api, width, context);
         } else if (state is DataErrorState) {
           return const Text("Something went wrong");
         }
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget HomeUI(RxList api, double width) {
+  Widget HomeUI(RxList api, double width, BuildContext context) {
     var getTo = [Quotes(), const Podcasts(), const Exercise()];
     return Column(
       children: [
@@ -299,7 +299,7 @@ class HomePage extends StatelessWidget {
         ),
         SizedBox(
           width: width,
-          height: 59,
+          height: 80,
           child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
@@ -315,7 +315,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: Container(
                         color: Colors.black,
-                        height: 60,
+                        height: 80,
                         width: width - 100,
                         child: Center(
                           child: Text(name3[index],
@@ -330,6 +330,9 @@ class HomePage extends StatelessWidget {
                   ),
                 );
               }),
+        ),
+        SizedBox(
+          height: 70,
         ),
         Stack(
           children: [
@@ -355,8 +358,8 @@ class HomePage extends StatelessWidget {
                 left: width / 3,
                 child: TextButton(
                   onPressed: () {},
-                  child: const Text(
-                    "...All Updated News",
+                  child: Text(
+                    context.loc!.bottomTitle,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

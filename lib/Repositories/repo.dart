@@ -29,7 +29,6 @@ class Repo extends GetxController {
     } else if (response.statusCode != 200) {
       return null;
     }
-    update();
   }
    RxList get repoApi =>  quoteModels;
 }
