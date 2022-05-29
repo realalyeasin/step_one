@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 import 'package:step_one/Repositories/repo.dart';
 import 'package:step_one/Screens/exercise.dart';
-import 'package:step_one/Screens/podcasts.dart';
+import 'package:step_one/Screens/nutrition.dart';
 import 'package:step_one/Screens/quotes.dart';
 import '../Bloc/data_bloc.dart';
 import '../Bloc/data_event.dart';
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
     FontAwesomeIcons.cartShopping,
     FontAwesomeIcons.timeline
   ];
-  var name3 = ['Quotes', 'Podcasts', 'Exercise'];
+  var name3 = ['Quotes', 'Nutrition', 'Exercise'];
   String date = DateFormat.yMMMMd().format(DateTime.now());
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget HomeUI(RxList api, double width, BuildContext context) {
-    var getTo = [Quotes(), const Podcasts(), const Exercise()];
+    var getTo = [Quotes(), Nutrition(), const Exercise()];
     return Column(
       children: [
         SizedBox(
@@ -156,7 +156,7 @@ class HomePage extends StatelessWidget {
                 );
               },
               separatorBuilder: (BuildContext, index) {
-                return SizedBox(
+                return const SizedBox(
                   width: 20,
                 );
               },
@@ -306,10 +306,11 @@ class HomePage extends StatelessWidget {
               itemCount: 3,
               itemBuilder: (BuildContext, index) {
                 return Padding(
-                  padding: EdgeInsets.all(9),
+                  padding: const EdgeInsets.all(9),
                   child: GestureDetector(
                     onTap: () {
                       Get.to(() => getTo[index]);
+                      repo.nutritionModels();
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -331,7 +332,7 @@ class HomePage extends StatelessWidget {
                 );
               }),
         ),
-        SizedBox(
+        const SizedBox(
           height: 70,
         ),
         Stack(
@@ -360,7 +361,7 @@ class HomePage extends StatelessWidget {
                   onPressed: () {},
                   child: Text(
                     context.loc!.bottomTitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontStyle: FontStyle.italic),
