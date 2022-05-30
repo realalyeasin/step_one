@@ -17,19 +17,16 @@ import 'package:step_one/Extension/BuildContext/loc.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   Repo repo = Get.put(Repo());
-  var name1 = ['Toefl', 'Vocabulary', 'Notes'];
   var icon1 = [
     FontAwesomeIcons.noteSticky,
     FontAwesomeIcons.fileWord,
     FontAwesomeIcons.pencil
   ];
-  var name2 = ['Book List', 'Wish List', 'Important Dates'];
   var icon2 = [
     FontAwesomeIcons.bookAtlas,
     FontAwesomeIcons.cartShopping,
     FontAwesomeIcons.timeline
   ];
-  var name3 = ['Quotes', 'Nutrition', 'Exercise'];
   String date = DateFormat.yMMMMd().format(DateTime.now());
   @override
   Widget build(BuildContext context) {
@@ -74,6 +71,9 @@ class HomePage extends StatelessWidget {
 
   Widget HomeUI(RxList api, double width, BuildContext context) {
     var getTo = [Quotes(), Nutrition(), const Exercise()];
+    var name1 = [context.loc!.r1n1,context.loc!.r1n2,context.loc!.r1n3,];
+    var name2 = [context.loc!.r2n1,context.loc!.r2n2,context.loc!.r2n3,];
+    var name3 = [context.loc!.r3n1,context.loc!.r3n2,context.loc!.r3n3,];
     return Column(
       children: [
         SizedBox(

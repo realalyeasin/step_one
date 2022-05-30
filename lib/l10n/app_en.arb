@@ -1,4 +1,17 @@
 {
   "appbar_title": "Skill Up",
+
+  "r1n1": "Toefl",
+  "r1n2": "Vocabulary",
+  "r1n3": "Notes",
+
+  "r2n1": "Book List",
+  "r2n2": "Wish List",
+  "r2n3": "Important Dates",
+
+  "r3n1": "Quotes",
+  "r3n2": "Podcasts",
+  "r3n3": "Exercise",
+  
   "bottomTitle": "...All Updated News"
 }
