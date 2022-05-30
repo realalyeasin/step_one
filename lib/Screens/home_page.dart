@@ -14,6 +14,8 @@ import '../Bloc/data_event.dart';
 import '../Bloc/data_state.dart';
 import 'package:step_one/Extension/BuildContext/loc.dart';
 
+import '../Custom/custom_paint1.dart';
+
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   Repo repo = Get.put(Repo());
@@ -71,9 +73,21 @@ class HomePage extends StatelessWidget {
 
   Widget HomeUI(RxList api, double width, BuildContext context) {
     var getTo = [Quotes(), Nutrition(), const Exercise()];
-    var name1 = [context.loc!.r1n1,context.loc!.r1n2,context.loc!.r1n3,];
-    var name2 = [context.loc!.r2n1,context.loc!.r2n2,context.loc!.r2n3,];
-    var name3 = [context.loc!.r3n1,context.loc!.r3n2,context.loc!.r3n3,];
+    var name1 = [
+      context.loc!.r1n1,
+      context.loc!.r1n2,
+      context.loc!.r1n3,
+    ];
+    var name2 = [
+      context.loc!.r2n1,
+      context.loc!.r2n2,
+      context.loc!.r2n3,
+    ];
+    var name3 = [
+      context.loc!.r3n1,
+      context.loc!.r3n2,
+      context.loc!.r3n3,
+    ];
     return Column(
       children: [
         SizedBox(
@@ -332,8 +346,25 @@ class HomePage extends StatelessWidget {
                 );
               }),
         ),
-        const SizedBox(
-          height: 70,
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 12,
+            right: 12,
+          ),
+          child: Row(
+            children: [
+              Container(height: 56, width: 110, color: Colors.black),
+              SizedBox(
+                width: 10,
+              ),
+              Container(height: 56, width: 110, color: Colors.black),
+              Container(
+                height: 70,
+                width: 155,
+                child: CustomPaint(painter: RPSCustomPainter()),
+              ),
+            ],
+          ),
         ),
         Stack(
           children: [
