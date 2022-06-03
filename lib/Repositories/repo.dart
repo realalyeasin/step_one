@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:step_one/Model/news_model.dart';
 import 'package:step_one/Model/nutrition_model.dart';
 import '../Model/quotes_model.dart';
 import 'package:http/http.dart' as http;
@@ -8,6 +9,7 @@ import 'package:http/http.dart' as http;
 class Repo extends GetxController {
   var quoteModels = [].obs;
   var nutritionModels = [].obs;
+  var newsModels = [].obs;
 
   Future<RxList?> getQuotes(String cat) async {
     print(cat);
@@ -41,7 +43,7 @@ class Repo extends GetxController {
     };
     String baseUrl = 'https://api.api-ninjas.com/v1/nutrition?query=$nut';
     final response =
-        await http.Client().get(Uri.parse(baseUrl), headers: headers);
+        await http.Client().get(Uri.parse(baseUrl), headers: headers) ;
     print(response.body);
     if (response.statusCode == 200) {
       Iterable results = jsonDecode(response.body);
@@ -52,6 +54,24 @@ class Repo extends GetxController {
       print(nutritionModels);
       update();
       return nutritionModels;
+    } else if (response.statusCode != 200) {
+      return null;
+    }
+  }
+
+  Future<RxList?> getNews() async {
+
+    String key = '${dotenv.get('NEWS_API_KEY')}';
+    String baseUrl = 'https://api.thenewsapi.com/v1/news/all?api_token=';
+    var response = await http.Client().get(Uri.parse('${baseUrl+key}'));
+    print(response.body);
+    if(response.statusCode == 200){
+      var results = jsonDecode(response.body);
+        var newsModel = NewsModel.fromJson(results);
+        newsModels.add(newsModel);
+      print(newsModels);
+      update();
+      return newsModels;
     } else if (response.statusCode != 200) {
       return null;
     }

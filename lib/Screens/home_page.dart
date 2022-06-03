@@ -15,6 +15,7 @@ import '../Bloc/data_state.dart';
 import 'package:step_one/Extension/BuildContext/loc.dart';
 
 import '../Custom/custom_paint1.dart';
+import 'all_news.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -389,7 +390,10 @@ class HomePage extends StatelessWidget {
                 top: 25,
                 left: width / 3,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => AllNews());
+                    repo.getNews();
+                  },
                   child: Text(
                     context.loc!.bottomTitle,
                     style: const TextStyle(

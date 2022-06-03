@@ -54,31 +54,31 @@ class Datum {
   dynamic relevanceScore;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    uuid: json["uuid"],
-    title: json["title"],
-    description: json["description"],
-    keywords: json["keywords"],
-    snippet: json["snippet"],
-    url: json["url"],
-    imageUrl: json["image_url"],
-    language: json["language"],
+    uuid: json["uuid"] ?? '',
+    title: json["title"] ?? '',
+    description: json["description"] ?? '',
+    keywords: json["keywords"] ?? '',
+    snippet: json["snippet"] ?? '',
+    url: json["url"] ?? '',
+    imageUrl: json["image_url"] ?? '',
+    language: json["language"] ?? '',
     publishedAt: DateTime.parse(json["published_at"]),
-    source: json["source"],
+    source: json["source"] ?? '',
     categories: List<String>.from(json["categories"].map((x) => x)),
     relevanceScore: json["relevance_score"],
   );
 
   Map<String, dynamic> toJson() => {
-    "uuid": uuid,
-    "title": title,
-    "description": description,
-    "keywords": keywords,
-    "snippet": snippet,
-    "url": url,
-    "image_url": imageUrl,
-    "language": language,
-    "published_at": publishedAt?.toIso8601String(),
-    "source": source,
+    "uuid": uuid ?? '',
+    "title": title ?? '',
+    "description": description ?? '',
+    "keywords": keywords ?? '',
+    "snippet": snippet ?? '',
+    "url": url ?? '',
+    "image_url": imageUrl ?? '',
+    "language": language ?? '',
+    "published_at": publishedAt?.toIso8601String() ?? '',
+    "source": source ?? '',
     "categories": List<dynamic>.from(categories.map((x) => x)),
     "relevance_score": relevanceScore,
   };
@@ -98,10 +98,10 @@ class Meta {
   int? page;
 
   factory Meta.fromJson(Map<String, dynamic> json) => Meta(
-    found: json["found"],
-    returned: json["returned"],
-    limit: json["limit"],
-    page: json["page"],
+    found: json["found"] ?? '',
+    returned: json["returned"] ?? '',
+    limit: json["limit"] ?? '',
+    page: json["page"] ?? '',
   );
 
   Map<String, dynamic> toJson() => {
